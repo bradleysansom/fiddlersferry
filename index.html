@@ -68,6 +68,13 @@
             margin-block-end: 5px;
         }
 
+        div.leaflet-popup-content .logo {
+            display: block;
+            max-height: 50px;
+            max-width: 300px;
+            margin-block-end: 5px;
+        }
+
         div.leaflet-popup-content em {
             display: block;
             font-family: 'Avenir Next LT Pro', 'Avenir Next', 'Avenir', 'Futura', sans-serif;
@@ -105,7 +112,7 @@
     var bounds = [[-490, -1000], [490, 1000]];
     var image = L.imageOverlay('map.svg', bounds).addTo(map);
     map.fitBounds(bounds);
-    map.setMaxBounds(bounds);
+    map.setMaxBounds([[-600, -1100], [600, 1100]]);
 
     var turbineHall = L.polygon([[188, -662], [43, -662], [43, -571], [16, -571], [16, -524], [43, -524], [43, -434], [188, -434]], { color: 'transparent' }).addTo(map).bindPopup("<b>Turbine Hall</b>The central hub of everything at Fiddlers Ferry.");
     var galleryOne = L.polygon([[133, -654], [96, -654], [96, -618], [133, -618]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d56114;'>Gallery One</b>Queer people have always existed, even if for most of history their contributions have been ignotransparent, In this gallery, we highlight the hidden stories of LGBTQ+ people at work.<em>Turbine hall, Floor 0</em>")
@@ -134,15 +141,20 @@
     var eventsSpace = L.circle([-68, -223], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Events Space</b><em>Tower 8</em>")
     var esInfo = L.circle([-139, -732], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>Ethel Smyth Square</em>")
     var towersInfo = L.circle([-11, -259], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>Outside Gallery Four</em>")
-    var rlyInfo = L.circle([167, 16], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>inside Fiddlers Ferry railway station</em>")
     var parkInfo = L.circle([-81, 414], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>The Lawns</em>")
     var esToilets = L.polygon([[-163, -720], [-190, -719], [-190, -701], [-163, -702]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>Ethel Smyth Square</em>")
     var rlyToilets = L.polygon([[147, -6], [120, -8], [120, 10], [147, 10]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>next to Fiddlers Ferry railway station</em>")
     var trainToilets = L.polygon([[-158, -208], [-185, -207], [-186, -186], [-159, -187]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>inside The Trainshed</em>")
     var boatingLake = L.polygon([[-488, -796], [-470, -810], [-433, -831], [-392, -846], [-332, -848], [-246, -796], [-231, -772], [-221, -723], [-221, -672], [-248, -483], [-250, -353], [-251, -295], [-240, -181], [-246, -169], [-258, -168], [-489, -413]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Boating Lake</b>Hire a pedalo from the boathouse and enjoy a leisurely half hour sailing across the water.")
-
-
-
+    var boots = L.polygon([[386, -326], [374, -291], [406, -261], [424, -313]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://upload.wikimedia.org/wikipedia/en/d/d8/Boots_logo.svg' height='50px' class='logo'>Chemists<em>Peter Tatchell Park</em>")
+    var smiths = L.polygon([[374, -291], [406, -261], [386, -198], [347, -211]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://static.wikia.nocookie.net/logopedia/images/8/84/WH_Smith.svg/revision/latest?cb=20130408155601' height='50px' class='logo'>News and magazines<em>Peter Tatchell Park</em>")
+    var marks = L.polygon([[392, -183], [353, -69], [315, -82], [352, -197]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://static.wikia.nocookie.net/logopedia/images/8/8c/Marks_%26_Spencer_London_logo_%28stacked%29.svg/revision/latest?cb=20211219065957' height='50px' class='logo'>Food, clothing and homewares<em>Peter Tatchell Park</em>")
+    var ptShops = L.polygon([[326, -66], [365, -53], [324, 68], [293, 31]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
+    var prayerRoom = L.polygon([[291, 35], [320, 69], [268, 49], [275, 31]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>Prayer room</b>A multi-faith space for quiet contemplation<em>Peter Tatchell Park</em>")
+    var railwayStation = L.polygon([[275, 23], [248, 107], [131, 70], [159, -15]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>railway station</b>Regular train services to Liverpool Lime Street, Widnes, Runcorn, Liverpool South Parkway, Warrington Bank Quay, Manchester Oxford Road, and Manchester Airport<em>Peter Tatchell Park</em>")
+    var rlyInfo = L.circle([167, 16], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>inside Fiddlers Ferry railway station</em>")
+    var rlyShops = L.polygon([[118, -19], [112, 16], [-106, -57], [-94, -91]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
+    var anneListerSquare = L.polygon([[-6, -220], [13, -187], [51, -168], [-18, -71], [-96, -100], [-82, -176], [-73, -175], [-40, -183]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>anne lister square</b>A large square")
 
 
 
