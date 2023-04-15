@@ -7,6 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiddlers Ferry interactive map</title>
     <style>
+        :root {
+            --186c: #ce132d;
+            --1505c: #ed6c05;
+            /* --100c: #f6eb63; */
+            --340c: #00945f;
+            /* --286c: #154284; */
+            /* --2623c: #602365; */
+            --361c: #44ac34;
+            --358c: #abd190;
+            /* --6c: #101820; */
+            /* --9c: #76777b; */
+            /* --7506c: #f2dab2; */
+            --7404c: #f6d93f;
+            --717c: #d56114;
+            --1685c: #863a20;
+            --223c: #c8017d;
+            --265c: #8064a9;
+            --254c: #913189;
+            --123c: #fdc42d;
+            --150c: #f8af5e;
+            --1665c: #e04512;
+            --218c: #e16ea7;
+            --220c: #aa1254;
+            /* --419c: #202222; */
+            --226c: #d20072;
+            --639c: #0093c9;
+            --183c: #f298b0;
+            --2985c: #54c0ea;
+            --278c: #8bb7e2;
+            --2725c: #5b5ba5;
+            /* --269c: #522d6d; */
+            --0921c: #a0d4ce;
+            --3252c: #46babd;
+            --322c: #007279;
+            --168c: #74391c;
+            /* --1545c: #673918; */
+            --highlight: var(--226c);
+        }
+
         html {
             height: 100%;
         }
@@ -66,6 +105,7 @@
             font-size: 2rem;
             line-height: 1;
             margin-block-end: 5px;
+            color: var(--highlight);
         }
 
         div.leaflet-popup-content .logo {
@@ -89,6 +129,88 @@
         div.leaflet-popup-content img {
             max-width: 100%;
         }
+
+        div.leaflet-touch div.leaflet-bar {
+            border: 4px solid black;
+        }
+
+        div.leaflet-touch div.leaflet-bar a:first-of-type {
+            border-bottom: 4px solid black;
+        }
+
+
+        header {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: stretch;
+        }
+
+        nav ul li,
+        input {
+            display: inline-block;
+            padding: 10px;
+            background-color: white;
+            border: solid black 4px;
+
+            font-family: 'Avenir Next LT Pro', 'Avenir Next', 'Avenir', 'Futura', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+
+        nav ul li.active,
+        nav ul li:hover {
+            background-color: var(--highlight);
+            cursor: pointer;
+        }
+
+
+
+        h1 {
+            font-family: 'Avenir Next LT Pro', 'Avenir Next', 'Avenir', 'Futura', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 3rem;
+            color: var(--highlight);
+        }
+
+        hr {
+            border: 2px solid black;
+            width: 100%;
+        }
+
+        header img {
+            cursor: pointer;
+        }
+
+        #map {
+            border: 4px solid black;
+        }
+
+        #info {
+            margin-block: 10px;
+            padding: 10px;
+            display: block;
+            background-color: var(--highlight);
+            font-family: 'Avenir Next LT Pro', 'Avenir Next', 'Avenir', 'Futura', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
         integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
@@ -99,9 +221,28 @@
 
 <body>
     <header>
-        <h1>Fiddlers Ferry</h1>
+        <img src="logo.svg" alt="Fiddlers Ferry" height="100px">
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Exhibitions</li>
+                <li>What's on</li>
+                <li class="active"><span>Interactive map</span></li>
+                <li>Visit</li>
+                <input type="search" name="search" id="searchBox" placeholder="search">
+            </ul>
+        </nav>
     </header>
+
     <main>
+        <hr>
+        <div id="info">
+            <marquee>Open today <span id="until"></span>
+            </marquee>
+        </div>
+        <hr>
+
+        <h1>interactive map</h1>
         <div id="map"></div>
     </main>
 </body>
@@ -114,48 +255,48 @@
     map.fitBounds(bounds);
     map.setMaxBounds([[-600, -1100], [600, 1100]]);
 
-    var turbineHall = L.polygon([[188, -662], [43, -662], [43, -571], [16, -571], [16, -524], [43, -524], [43, -434], [188, -434]], { color: 'transparent' }).addTo(map).bindPopup("<b>Turbine Hall</b>The central hub of everything at Fiddlers Ferry.");
-    var galleryOne = L.polygon([[133, -654], [96, -654], [96, -618], [133, -618]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d56114;'>Gallery One</b>Queer people have always existed, even if for most of history their contributions have been ignotransparent, In this gallery, we highlight the hidden stories of LGBTQ+ people at work.<em>Turbine hall, Floor 0</em>")
-    var galleryTwo = L.polygon([[133, -611], [96, -611], [96, -575], [133, -575]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#f298b0;'>Gallery Two</b>The lives of LGBTQ+ people often have an undercurrent of resistance. In this gallery, movements against homophobia and transphobia present historic and contemporary art.<em>Turbine hall, Floor 1</em>")
-    var fiddlersFerryHistory = L.polygon([[133, -569], [96, -569], [96, -531], [133, -531]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#863a20;'>Fiddlers Ferry History</b>The power station spent the first four decades of its life providing electricity to the North West. Now, after the rebirth, we pay tribute to what the site meant to everyone.<em>Turbine hall, Floor 1</em>")
-    var fiddlersFerryHistory = L.polygon([[133, -526], [96, -526], [96, -489], [133, -489]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#76777b;'>The Warrington and Widnes Galleries</b>While LGBTQ+ people often flock to big cities to live their lives, this gallery tells the story of queer life in the towns and villages up and down the land over the last 500 years.<em>Turbine hall, Floor 2</em>")
-    var conferenceCentre = L.polygon([[133, -482], [96, -482], [96, -445], [133, -445]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Conference Centre</b>A space for community events - available to hire to meet and gather.<em>Turbine hall, Floor 1</em>")
-    var cinema = L.polygon([[88, -654], [51, -654], [51, -618], [88, -618]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Cinema</b>Six screens showing queer films.<em>Turbine hall, Floor 2</em>")
-    var exhibitionHall = L.polygon([[88, -611], [51, -611], [51, -575], [88, -575]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Exhibition Hall</b>Shows and events held in the former boiler room.<em>Turbine hall, Floor 2</em>")
-    var giftShop = L.polygon([[83, -561], [54, -561], [54, -535], [83, -535]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Gift Shop</b>Souvenirs, postcards, gifts, books, and other Fiddlers Ferry and general queer paraphenilia. <em>Turbine hall, Floor 0</em>")
-    var thToilets = L.polygon([[83, -519], [54, -519], [54, -496], [83, -496]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>Turbine hall, Floors 0, 1, 2</em>")
-    var lostProperty = L.polygon([[83, -478], [54, -478], [54, -450], [83, -450]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Lost Property</b><em>Turbine hall, Floor 0</em>")
-    var fiore = L.polygon([[35, -661], [-32, -661], [-32, -433], [35, -433], [35, -515], [11, -515], [11, -581], [35, -581]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Fiore de Henriquez Square</b>A Mediterranean-style square at the heart of the site, home to a range of events and performances. Named after the Italian-British sculptor who campaigned for intersex rights")
-    var substation = L.polygon([[-42, -661], [-83, -661], [-83, -433], [-42, -433]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Substation</b>The building which power station's former connection to the national grid has been preserved here, now playing host to food and drink outlets.")
-    var ssCafe = L.polygon([[-59, -657], [-75, -655], [-77, -643], [-75, -628], [-59, -630]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Hyacinth's Café</b>Nestled amongst old equipment from the power station sits this impressive café, serving coffee and cakes. Don't miss the famous candlelight suppers.<em>Substation, Floor 0</em>")
-    var ssBar = L.polygon([[-56, -618], [-75, -617], [-75, -590], [-49, -589], [-48, -602]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Lily's</b>On the roof of the substation, this cocktail bar offers a stunning ambience.<em>Substation, Floor 2</em>")
-    var ssRestaurant = L.polygon([[-49, -498], [-74, -497], [-76, -473], [-49, -471]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>The Betjeman</b>This retro-style buffet restaurant unites cuisine from around the world within a delightfully 1970s environment, with industrial chic furnishings reclaimed from around the power station.<em>Substation, Floor 1</em>")
-    var ssToilets = L.polygon([[-50, -464], [-75, -464], [-75, -442], [-50, -442]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>Substation, Floor 0</em>")
-    var heDreamedOfMachines = L.circle([108, -774], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#ce132d;'>He Dreamed of Machines</b>Uncover the hidden story of Alan Turing, the man who invented computing, helped defeat the Nazis and was persecuted by the government for being gay.<em>Tower 1</em>")
-    var pioneers = L.circle([48, -870], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#913089;'>Pioneers</b>Queer people pivotal in the history of science and medicine are often left out of the history books. This gallery charts the technological advances impossible without LGBTQ+ figures.<em>Tower 2</em>")
-    var pitsAndPerverts = L.circle([-7, -773], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#e16ea7;'>Pits and Perverts</b>In 1984, an unlikely alliance was formed between queer activists and striking miners against police violence. What followed was a strong solidarity that lasted for decades.<em>Tower 3</em>")
-    var placesToBe = L.circle([-68, -871], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#44ac34;'>Places to Be</b>Our towns, cities, and homes have been shaped by the contributions of queer people in architecture and design, whom we celebrate with this interactive experience.<em>Tower 4</em>")
-    var galleryThree = L.circle([109, -325], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#e04512;'>Gallery Three</b>A new LGBTQ+ exhibition every fortnight.<em>Tower 5</em>")
-    var galleryFour = L.circle([47, -223], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#aa1254;'>Gallery Four</b>Queer artists making the tower their own.<em>Tower 6</em>")
-    var theatre = L.circle([-9, -326], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Theatre</b>A 500-seat auditorium playing host to performances of queer plays.<em>Tower 7</em>")
-    var eventsSpace = L.circle([-68, -223], { radius: 45, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Events Space</b><em>Tower 8</em>")
-    var esInfo = L.circle([-139, -732], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>Ethel Smyth Square</em>")
-    var towersInfo = L.circle([-11, -259], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>Outside Gallery Four</em>")
-    var parkInfo = L.circle([-81, 414], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>The Lawns</em>")
-    var esToilets = L.polygon([[-163, -720], [-190, -719], [-190, -701], [-163, -702]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>Ethel Smyth Square</em>")
-    var rlyToilets = L.polygon([[147, -6], [120, -8], [120, 10], [147, 10]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>next to Fiddlers Ferry railway station</em>")
-    var trainToilets = L.polygon([[-158, -208], [-185, -207], [-186, -186], [-159, -187]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Toilets</b><em>inside The Trainshed</em>")
-    var boatingLake = L.polygon([[-488, -796], [-470, -810], [-433, -831], [-392, -846], [-332, -848], [-246, -796], [-231, -772], [-221, -723], [-221, -672], [-248, -483], [-250, -353], [-251, -295], [-240, -181], [-246, -169], [-258, -168], [-489, -413]], { color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Boating Lake</b>Hire a pedalo from the boathouse and enjoy a leisurely half hour sailing across the water.")
-    var boots = L.polygon([[386, -326], [374, -291], [406, -261], [424, -313]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://upload.wikimedia.org/wikipedia/en/d/d8/Boots_logo.svg' height='50px' class='logo'>Chemists<em>Peter Tatchell Park</em>")
-    var smiths = L.polygon([[374, -291], [406, -261], [386, -198], [347, -211]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://static.wikia.nocookie.net/logopedia/images/8/84/WH_Smith.svg/revision/latest?cb=20130408155601' height='50px' class='logo'>News and magazines<em>Peter Tatchell Park</em>")
-    var marks = L.polygon([[392, -183], [353, -69], [315, -82], [352, -197]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<img src='https://static.wikia.nocookie.net/logopedia/images/8/8c/Marks_%26_Spencer_London_logo_%28stacked%29.svg/revision/latest?cb=20211219065957' height='50px' class='logo'>Food, clothing and homewares<em>Peter Tatchell Park</em>")
-    var ptShops = L.polygon([[326, -66], [365, -53], [324, 68], [293, 31]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
-    var prayerRoom = L.polygon([[291, 35], [320, 69], [268, 49], [275, 31]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>Prayer room</b>A multi-faith space for quiet contemplation<em>Peter Tatchell Park</em>")
-    var railwayStation = L.polygon([[275, 23], [248, 107], [131, 70], [159, -15]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>railway station</b>Regular train services to Liverpool Lime Street, Widnes, Runcorn, Liverpool South Parkway, Warrington Bank Quay, Manchester Oxford Road, and Manchester Airport<em>Peter Tatchell Park</em>")
-    var rlyInfo = L.circle([167, 16], { radius: 12, color: 'transparent' }).addTo(map).bindPopup("<b style='color:#d20072;'>Information desk</b>Always happy to assist with any enquiries during your visit.<em>inside Fiddlers Ferry railway station</em>")
-    var rlyShops = L.polygon([[118, -19], [112, 16], [-106, -57], [-94, -91]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
-    var anneListerSquare = L.polygon([[-6, -220], [13, -187], [51, -168], [-18, -71], [-96, -100], [-82, -176], [-73, -175], [-40, -183]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d20072;'>anne lister square</b>A large square")
-
+    var turbineHall = L.polygon([[188, -662], [43, -662], [43, -571], [16, -571], [16, -524], [43, -524], [43, -434], [188, -434]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b>Turbine Hall</b>The central hub of everything at Fiddlers Ferry.");
+    var galleryOne = L.polygon([[133, -654], [96, -654], [96, -618], [133, -618]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#d56114;'>Gallery One</b>Queer people have always existed, even if for most of history their contributions have been ignotransparent, In this gallery, we highlight the hidden stories of LGBTQ+ people at work.<em>Turbine hall, Floor 0</em>")
+    var galleryTwo = L.polygon([[133, -611], [96, -611], [96, -575], [133, -575]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#f298b0;'>Gallery Two</b>The lives of LGBTQ+ people often have an undercurrent of resistance. In this gallery, movements against homophobia and transphobia present historic and contemporary art.<em>Turbine hall, Floor 1</em>")
+    var fiddlersFerryHistory = L.polygon([[133, -569], [96, -569], [96, -531], [133, -531]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#863a20;'>Fiddlers Ferry History</b>The power station spent the first four decades of its life providing electricity to the North West. Now, after the rebirth, we pay tribute to what the site meant to everyone.<em>Turbine hall, Floor 1</em>")
+    var fiddlersFerryHistory = L.polygon([[133, -526], [96, -526], [96, -489], [133, -489]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#76777b;'>The Warrington and Widnes Galleries</b>While LGBTQ+ people often flock to big cities to live their lives, this gallery tells the story of queer life in the towns and villages up and down the land over the last 500 years.<em>Turbine hall, Floor 2</em>")
+    var conferenceCentre = L.polygon([[133, -482], [96, -482], [96, -445], [133, -445]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Conference Centre</b>A space for community events - available to hire to meet and gather.<em>Turbine hall, Floor 1</em>")
+    var cinema = L.polygon([[88, -654], [51, -654], [51, -618], [88, -618]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Cinema</b>Six screens showing queer films.<em>Turbine hall, Floor 2</em>")
+    var exhibitionHall = L.polygon([[88, -611], [51, -611], [51, -575], [88, -575]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Exhibition Hall</b>Shows and events held in the former boiler room.<em>Turbine hall, Floor 2</em>")
+    var giftShop = L.polygon([[83, -561], [54, -561], [54, -535], [83, -535]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Gift Shop</b>Souvenirs, postcards, gifts, books, and other Fiddlers Ferry and general queer paraphenilia. <em>Turbine hall, Floor 0</em>")
+    var thToilets = L.polygon([[83, -519], [54, -519], [54, -496], [83, -496]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>Turbine hall, Floors 0, 1, 2</em>")
+    var lostProperty = L.polygon([[83, -478], [54, -478], [54, -450], [83, -450]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Lost Property</b><em>Turbine hall, Floor 0</em>")
+    var fiore = L.polygon([[35, -661], [-32, -661], [-32, -433], [35, -433], [35, -515], [11, -515], [11, -581], [35, -581]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Fiore de Henriquez Square</b>A Mediterranean-style square at the heart of the site, home to a range of events and performances. Named after the Italian-British sculptor who campaigned for intersex rights")
+    var substation = L.polygon([[-42, -661], [-83, -661], [-83, -433], [-42, -433]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Substation</b>The building which power station's former connection to the national grid has been preserved here, now playing host to food and drink outlets.")
+    var ssCafe = L.polygon([[-59, -657], [-75, -655], [-77, -643], [-75, -628], [-59, -630]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Hyacinth's Café</b>Nestled amongst old equipment from the power station sits this impressive café, serving coffee and cakes. Don't miss the famous candlelight suppers.<em>Substation, Floor 0</em>")
+    var ssBar = L.polygon([[-56, -618], [-75, -617], [-75, -590], [-49, -589], [-48, -602]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Lily's</b>On the roof of the substation, this cocktail bar offers a stunning ambience.<em>Substation, Floor 2</em>")
+    var ssRestaurant = L.polygon([[-49, -498], [-74, -497], [-76, -473], [-49, -471]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >The Betjeman</b>This retro-style buffet restaurant unites cuisine from around the world within a delightfully 1970s environment, with industrial chic furnishings reclaimed from around the power station.<em>Substation, Floor 1</em>")
+    var ssToilets = L.polygon([[-50, -464], [-75, -464], [-75, -442], [-50, -442]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>Substation, Floor 0</em>")
+    var heDreamedOfMachines = L.circle([108, -774], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#ce132d;'>He Dreamed of Machines</b>Uncover the hidden story of Alan Turing, the man who invented computing, helped defeat the Nazis and was persecuted by the government for being gay.<em>Tower 1</em>")
+    var pioneers = L.circle([48, -870], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#913089;'>Pioneers</b>Queer people pivotal in the history of science and medicine are often left out of the history books. This gallery charts the technological advances impossible without LGBTQ+ figures.<em>Tower 2</em>")
+    var pitsAndPerverts = L.circle([-7, -773], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#e16ea7;'>Pits and Perverts</b>In 1984, an unlikely alliance was formed between queer activists and striking miners against police violence. What followed was a strong solidarity that lasted for decades.<em>Tower 3</em>")
+    var placesToBe = L.circle([-68, -871], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#44ac34;'>Places to Be</b>Our towns, cities, and homes have been shaped by the contributions of queer people in architecture and design, whom we celebrate with this interactive experience.<em>Tower 4</em>")
+    var galleryThree = L.circle([109, -325], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#e04512;'>Gallery Three</b>A new LGBTQ+ exhibition every fortnight.<em>Tower 5</em>")
+    var galleryFour = L.circle([47, -223], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b style='color:#aa1254;'>Gallery Four</b>Queer artists making the tower their own.<em>Tower 6</em>")
+    var theatre = L.circle([-9, -326], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Theatre</b>A 500-seat auditorium playing host to performances of queer plays.<em>Tower 7</em>")
+    var eventsSpace = L.circle([-68, -223], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Events Space</b><em>Tower 8</em>")
+    var esInfo = L.circle([-139, -732], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>Ethel Smyth Square</em>")
+    var towersInfo = L.circle([-11, -259], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>Outside Gallery Four</em>")
+    var parkInfo = L.circle([-81, 414], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>The Lawns</em>")
+    var esToilets = L.polygon([[-163, -720], [-190, -719], [-190, -701], [-163, -702]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>Ethel Smyth Square</em>")
+    var rlyToilets = L.polygon([[147, -6], [120, -8], [120, 10], [147, 10]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>next to Fiddlers Ferry railway station</em>")
+    var trainToilets = L.polygon([[-158, -208], [-185, -207], [-186, -186], [-159, -187]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>inside The Trainshed</em>")
+    var boatingLake = L.polygon([[-488, -796], [-470, -810], [-433, -831], [-392, -846], [-332, -848], [-246, -796], [-231, -772], [-221, -723], [-221, -672], [-248, -483], [-250, -353], [-251, -295], [-240, -181], [-246, -169], [-258, -168], [-489, -413]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Boating Lake</b>Hire a pedalo from the boathouse and enjoy a leisurely half hour sailing across the water.")
+    var boots = L.polygon([[386, -326], [374, -291], [406, -261], [424, -313]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<img src='https://upload.wikimedia.org/wikipedia/en/d/d8/Boots_logo.svg' height='50px' width='300px' class='logo'>Chemists<em>Peter Tatchell Park</em>")
+    var smiths = L.polygon([[374, -291], [406, -261], [386, -198], [347, -211]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<img src='https://upload.wikimedia.org/wikipedia/commons/6/6b/WHSmith_logo.svg' height='50px' width='300px' class='logo'>News and magazines<em>Peter Tatchell Park</em>")
+    var marks = L.polygon([[392, -183], [353, -69], [315, -82], [352, -197]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<img src='https://upload.wikimedia.org/wikipedia/commons/5/51/Marks_%26_Spencer_201x_logo.svg' height='50px' width='300px' class='logo'>Food, clothing and homewares<em>Peter Tatchell Park</em>")
+    var ptShops = L.polygon([[326, -66], [365, -53], [324, 68], [293, 31]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
+    var prayerRoom = L.polygon([[291, 35], [320, 69], [268, 49], [275, 31]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >Prayer room</b>A multi-faith space for quiet contemplation<em>Peter Tatchell Park</em>")
+    var railwayStation = L.polygon([[275, 23], [248, 107], [131, 70], [159, -15]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >railway station</b>Regular train services to Liverpool Lime Street, Widnes, Runcorn, Liverpool South Parkway, Warrington Bank Quay, Manchester Oxford Road, and Manchester Airport<em>Peter Tatchell Park</em>")
+    var rlyInfo = L.circle([167, 16], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>inside Fiddlers Ferry railway station</em>")
+    var rlyShops = L.polygon([[118, -19], [112, 16], [-106, -57], [-94, -91]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
+    var anneListerSquare = L.polygon([[-6, -220], [13, -187], [51, -168], [-18, -71], [-96, -100], [-82, -176], [-73, -175], [-40, -183]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >anne lister square</b>A large square situated at the base of the south cooling towers, named after the industrialist and \"first modern lesbian\" whose story inspitransparent the BBC drama Gentleman Jack")
+    var peterTatchellPark = L.polygon([[219, -416], [345, -292], [282, 5], [-4, -87], [109, -220], [118, -278], [154, -314], [148, -348], [210, -419]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >Peter Tatchell Park</b>Located between the power station and the railway station, this large park pays tribute to queer activists from across the ages with a selection of sunken gardens alongside wide meadows.")
 
 
     map.on('click', function (e) {
@@ -164,6 +305,50 @@
 
     });
 
+</script>
+<script>
+    var colours = Array.from(document.styleSheets)
+        .filter(
+            sheet =>
+                sheet.href === null || sheet.href.startsWith(window.location.origin)
+        )
+        .reduce(
+            (acc, sheet) =>
+            (acc = [
+                ...acc,
+                ...Array.from(sheet.cssRules).reduce(
+                    (def, rule) =>
+                    (def =
+                        rule.selectorText === ":root"
+                            ? [
+                                ...def,
+                                ...Array.from(rule.style).filter(name =>
+                                    name.startsWith("--")
+                                )
+                            ]
+                            : def),
+                    []
+                )
+            ]),
+            []
+        );
+    //console.log(colours)
+    function randomColour(array) {
+        return array[Math.floor(Math.random() * array.length - 1)];
+    }
+    // console.log(randomColour(colours));
+    document.querySelector(":root").style.setProperty('--highlight', 'var(' + randomColour(colours) + ')')
+
+    var openingTimes;
+    var date = new Date();
+    let day = date.getDay();
+    console.log(day);
+    if (day === 0) {
+        openingTimes = "1000 - 1800"
+    } else {
+        openingTimes = "0800 - 2200"
+    }
+    document.getElementById("until").innerHTML = openingTimes;
 </script>
 
 </html>
