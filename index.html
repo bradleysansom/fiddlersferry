@@ -48,8 +48,8 @@
 
         @font-face {
             font-family: 'Avenir Next LT Pro';
-            src: url('AvenirNextLTPro-Bold.woff2') format('woff2'),
-                url('AvenirNextLTPro-Bold.woff') format('woff');
+            src: url('fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
+                url('fonts/AvenirNextLTPro-Bold.woff') format('woff');
             font-weight: bold;
             font-style: normal;
             font-display: swap;
@@ -57,8 +57,8 @@
 
         @font-face {
             font-family: 'Avenir Next LT Pro';
-            src: url('AvenirNextLTPro-Demi.woff2') format('woff2'),
-                url('AvenirNextLTPro-Demi.woff') format('woff');
+            src: url('fonts/AvenirNextLTPro-Demi.woff2') format('woff2'),
+                url('fonts/AvenirNextLTPro-Demi.woff') format('woff');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -80,6 +80,7 @@
             justify-content: space-between;
             flex-wrap: nowrap;
             align-items: flex-start;
+            font-family: 'Avenir Next LT Pro';
         }
 
         main {
@@ -97,6 +98,8 @@
             box-shadow: none;
             background-color: #f5f5f5;
             border: 4px solid black;
+
+            font-family: 'Avenir Next LT Pro';
         }
 
         .leaflet-container a.leaflet-popup-close-button {
@@ -108,6 +111,7 @@
             color: black;
             font-weight: bold;
             font-size: 1.5rem;
+
         }
 
         div.leaflet-popup-tip {
@@ -116,18 +120,20 @@
         }
 
         div.leaflet-popup-content {
-            font-family: 'Avenir Next LT Pro';
             font-size: 1rem;
+
+            font-family: 'Avenir Next LT Pro';
         }
 
         div.leaflet-popup-content b {
             display: block;
-            font-family: 'Avenir Next LT Pro';
             text-transform: lowercase;
             font-size: 2rem;
             line-height: 1;
             margin-block-end: 5px;
             color: var(--highlight);
+
+            font-family: 'Avenir Next LT Pro';
         }
 
         div.leaflet-popup-content .logo {
@@ -137,9 +143,8 @@
             margin-block-end: 5px;
         }
 
-        div.leaflet-popup-content em {
+        em {
             display: block;
-            font-family: 'Avenir Next LT Pro';
             font-style: normal;
             font-weight: bold;
             font-size: 1rem;
@@ -185,8 +190,6 @@
             padding: 10px;
             background-color: white;
             border: solid black 4px;
-
-            font-family: 'Avenir Next LT Pro';
             font-style: normal;
             font-weight: bold;
             text-transform: lowercase;
@@ -201,7 +204,6 @@
 
 
         h1 {
-            font-family: 'Avenir Next LT Pro';
             font-style: normal;
             font-weight: bold;
             font-size: 3rem;
@@ -226,19 +228,462 @@
             padding: 10px;
             display: block;
             background-color: var(--highlight);
-            font-family: 'Avenir Next LT Pro';
             font-style: normal;
             font-weight: bold;
             font-size: 1.5rem;
             text-align: center;
+        }
+
+        div.rack {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        article {
+            flex-shrink: 0;
+            width: 300px;
+        }
+
+        article img {
+            max-width: 100%;
+        }
+
+        article p {
+            margin-block: 0;
+            max-width: 400px;
+        }
+
+        button {
+            background: none;
+            border: 0;
+            outline: 0;
+            padding: 0;
+            cursor: pointer;
+            margin: 0;
+            font-family: 'Avenir Next LT Pro';
+            font-weight: bold;
+            color: var(--highlight);
+            font-size: 1rem;
+
+        }
+
+        span.icon {
+            margin-inline-end: 5px;
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family: 'liza';
+            src: url('fonts/liza.eot?w8gysa');
+            src: url('fonts/liza.eot?w8gysa#iefix') format('embedded-opentype'),
+                url('fonts/liza.ttf?w8gysa') format('truetype'),
+                url('fonts/liza.woff?w8gysa') format('woff'),
+                url('fonts/liza.svg?w8gysa#liza') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        [class^="icon-"],
+        [class*=" icon-"] {
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: 'liza' !important;
+            speak: never;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-aeroplane:before {
+            content: "\e900";
+        }
+
+        .icon-airport:before {
+            content: "\e901";
+        }
+
+        .icon-arrow-e:before {
+            content: "\e902";
+        }
+
+        .icon-arrow-n:before {
+            content: "\e903";
+        }
+
+        .icon-arrow-ne:before {
+            content: "\e904";
+        }
+
+        .icon-arrow-nw:before {
+            content: "\e905";
+        }
+
+        .icon-arrow-s:before {
+            content: "\e906";
+        }
+
+        .icon-arrow-se:before {
+            content: "\e907";
+        }
+
+        .icon-arrow-sw:before {
+            content: "\e908";
+        }
+
+        .icon-arrow-w:before {
+            content: "\e909";
+        }
+
+        .icon-baby-change:before {
+            content: "\e90a";
+        }
+
+        .icon-bar:before {
+            content: "\e90b";
+        }
+
+        .icon-box-office:before {
+            content: "\e90c";
+        }
+
+        .icon-bus:before {
+            content: "\e90d";
+        }
+
+        .icon-bus-stop:before {
+            content: "\e90e";
+        }
+
+        .icon-cafe:before {
+            content: "\e90f";
+        }
+
+        .icon-car:before {
+            content: "\e910";
+        }
+
+        .icon-car-park-undercover:before {
+            content: "\e911";
+        }
+
+        .icon-cash-machine:before {
+            content: "\e912";
+        }
+
+        .icon-changing-places:before {
+            content: "\e913";
+        }
+
+        .icon-cinema:before {
+            content: "\e914";
+        }
+
+        .icon-cloakroom:before {
+            content: "\e915";
+        }
+
+        .icon-coach:before {
+            content: "\e916";
+        }
+
+        .icon-coach-stand:before {
+            content: "\e917";
+        }
+
+        .icon-cycle-left:before {
+            content: "\e918";
+        }
+
+        .icon-cycle-parking:before {
+            content: "\e919";
+        }
+
+        .icon-cycle-right:before {
+            content: "\e91a";
+        }
+
+        .icon-electric-car-charging:before {
+            content: "\e91b";
+        }
+
+        .icon-escalator:before {
+            content: "\e91c";
+        }
+
+        .icon-escalator-down:before {
+            content: "\e91d";
+        }
+
+        .icon-escalator-up:before {
+            content: "\e91e";
+        }
+
+        .icon-ferryboat-left:before {
+            content: "\e91f";
+        }
+
+        .icon-ferryboat-pier:before {
+            content: "\e920";
+        }
+
+        .icon-ferryboat-right:before {
+            content: "\e921";
+        }
+
+        .icon-first-aid:before {
+            content: "\e922";
+        }
+
+        .icon-gentlemen:before {
+            content: "\e923";
+        }
+
+        .icon-hearing-impairment:before {
+            content: "\e924";
+        }
+
+        .icon-hotel:before {
+            content: "\e925";
+        }
+
+        .icon-information:before {
+            content: "\e926";
+        }
+
+        .icon-ladies:before {
+            content: "\e927";
+        }
+
+        .icon-ladies-and-gentlemen:before {
+            content: "\e928";
+        }
+
+        .icon-lift:before {
+            content: "\e929";
+        }
+
+        .icon-lift-down:before {
+            content: "\e92a";
+        }
+
+        .icon-lift-up:before {
+            content: "\e92b";
+        }
+
+        .icon-litter-bin:before {
+            content: "\e92c";
+        }
+
+        .icon-locker:before {
+            content: "\e92d";
+        }
+
+        .icon-lost-property:before {
+            content: "\e92e";
+        }
+
+        .icon-mobility-impairment:before {
+            content: "\e92f";
+        }
+
+        .icon-motorcycle-left:before {
+            content: "\e930";
+        }
+
+        .icon-motorcycle-parking:before {
+            content: "\e931";
+        }
+
+        .icon-motorcycle-right:before {
+            content: "\e932";
+        }
+
+        .icon-no-entry:before {
+            content: "\e933";
+        }
+
+        .icon-no-smoking:before {
+            content: "\e934";
+        }
+
+        .icon-no-vaping:before {
+            content: "\e935";
+        }
+
+        .icon-park:before {
+            content: "\e936";
+        }
+
+        .icon-parking:before {
+            content: "\e937";
+        }
+
+        .icon-parking-disabled:before {
+            content: "\e938";
+        }
+
+        .icon-pedestrian-left:before {
+            content: "\e939";
+        }
+
+        .icon-pedestrian-right:before {
+            content: "\e93a";
+        }
+
+        .icon-postbox:before {
+            content: "\e93b";
+        }
+
+        .icon-prayer-room:before {
+            content: "\e93c";
+        }
+
+        .icon-ramp:before {
+            content: "\e93d";
+        }
+
+        .icon-ramp-down:before {
+            content: "\e93e";
+        }
+
+        .icon-ramp-up:before {
+            content: "\e93f";
+        }
+
+        .icon-recycling:before {
+            content: "\e940";
+        }
+
+        .icon-restaurant:before {
+            content: "\e941";
+        }
+
+        .icon-shop:before {
+            content: "\e942";
+        }
+
+        .icon-shower:before {
+            content: "\e943";
+        }
+
+        .icon-smoking:before {
+            content: "\e944";
+        }
+
+        .icon-steps:before {
+            content: "\e945";
+        }
+
+        .icon-steps-down:before {
+            content: "\e946";
+        }
+
+        .icon-steps-up:before {
+            content: "\e947";
+        }
+
+        .icon-taxi:before {
+            content: "\e948";
+        }
+
+        .icon-taxi-rank:before {
+            content: "\e949";
+        }
+
+        .icon-telephone:before {
+            content: "\e94a";
+        }
+
+        .icon-theatre:before {
+            content: "\e94b";
+        }
+
+        .icon-tickets:before {
+            content: "\e94c";
+        }
+
+        .icon-toilet:before {
+            content: "\e94d";
+        }
+
+        .icon-tower:before {
+            content: "\e94e";
+        }
+
+        .icon-train:before {
+            content: "\e94f";
+        }
+
+        .icon-train-station:before {
+            content: "\e950";
+        }
+
+        .icon-tram:before {
+            content: "\e951";
+        }
+
+        .icon-tram-stop:before {
+            content: "\e952";
+        }
+
+        .icon-travelator-left:before {
+            content: "\e953";
+        }
+
+        .icon-travelator-right:before {
+            content: "\e954";
+        }
+
+        .icon-turbine-hall:before {
+            content: "\e955";
+        }
+
+        .icon-unisex:before {
+            content: "\e956";
+        }
+
+        .icon-vaping:before {
+            content: "\e957";
+        }
+
+        .icon-visual-impairment:before {
+            content: "\e958";
+        }
+
+        .icon-wheelchair:before {
+            content: "\e959";
+        }
+
+        .icon-wheelchair-left:before {
+            content: "\e95a";
+        }
+
+        .icon-wheelchair-right:before {
+            content: "\e95b";
+        }
+
+        .icon-wifi:before {
+            content: "\e95c";
+        }
+
+        .icon-you-are-here:before {
+            content: "\e95d";
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
         integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
         integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -266,6 +711,66 @@
 
         <h1>interactive map</h1>
         <div id="map"></div>
+        <hr>
+        <h1>exhibitions</h1>
+
+        <div class="rack">
+
+            <article>
+                <img src="machines.png" alt="he dreamed of machines">
+                <p>Uncover the hidden story of Alan Turing, the man who invented computing, helped defeat the Nazis and
+                    was persecuted by
+                    the government for being gay.<em>Tower 1</em></p>
+                <button onclick="openPopup(heDreamedOfMachines)"><span class="icon icon-you-are-here"></span> Show on
+                    map</button>
+            </article>
+            <article>
+                <img src="pioneers.png" alt="pioneers">
+                <p>Queer people pivotal in the history of science and medicine are often left out of the history books.
+                    This gallery charts
+                    the technological advances impossible without LGBTQ+ figures.<em>Tower 2</em></p>
+                <button onclick="openPopup(pioneers)"><span class="icon icon-you-are-here"></span>Show on map</button>
+            </article>
+            <article>
+                <img src="pits.png" alt="pits and perverts">
+                <p>In 1984, an unlikely alliance was formed between queer activists and striking miners against police
+                    violence. What
+                    followed was a strong solidarity that lasted for decades.<em>Tower 3</em></p>
+                <button onclick="openPopup(pitsAndPerverts)"><span class="icon icon-you-are-here"></span>Show on
+                    map</button>
+            </article>
+            <article>
+                <img src="places.png" alt="places to be">
+                <p>Our towns, cities, and homes have been shaped by the contributions of queer people in architecture
+                    and design, whom we
+                    celebrate with this interactive experience.<em>Tower 4</em></p>
+                <button onclick="openPopup(placesToBe)"><span class="icon icon-you-are-here"></span>Show on map</button>
+            </article>
+            <article>
+                <img src="rails.png" alt="queers on rails">
+                <p>The development of the railways was guided by LGBTQ+ people. Since then, the histories of queer
+                    people and the railways have been inseparable.<em>Dawn Langley Simmons Square</em></p>
+                <button onclick="openPopup(queersOnRails)"><span class="icon icon-you-are-here"></span>Show on
+                    map</button>
+            </article>
+            <article>
+                <img src="trainshed.png" alt="the trainshed">
+                <p>Uncover the queer stories from heavy engineering history, with this hands-on exhibition featuring
+                    artifacts from the power station and the country's railway history.<em>Dawn Langley Simmons
+                        Square</em></p>
+                <button onclick="openPopup(theTrainshed)"><span class="icon icon-you-are-here"></span>Show on
+                    map</button>
+            </article>
+            <article>
+                <img src="history.png" alt="fiddlers ferry history">
+                <p>The power station spent the first four decades of its life providing electricity to the North West.
+                    Now, after the
+                    rebirth, we pay tribute to what the site meant to everyone.<em>Turbine hall, Floor 1</em></p>
+                <button onclick="openPopup(fiddlersFerryHistory)"><span class="icon icon-you-are-here"></span>Show on
+                    map</button>
+            </article>
+        </div>
+
     </main>
 </body>
 <script> // Initialise map
@@ -304,7 +809,6 @@
     var eventsSpace = L.circle([-68, -223], { radius: 45, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Events Space</b><em>Tower 8</em>")
     var esInfo = L.circle([-139, -732], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>Ethel Smyth Square</em>")
     var towersInfo = L.circle([-11, -259], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>Outside Gallery Four</em>")
-    var parkInfo = L.circle([-81, 414], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>The Lawns</em>")
     var esToilets = L.polygon([[-163, -720], [-190, -719], [-190, -701], [-163, -702]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>Ethel Smyth Square</em>")
     var rlyToilets = L.polygon([[147, -6], [120, -8], [120, 10], [147, 10]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>next to Fiddlers Ferry railway station</em>")
     var trainToilets = L.polygon([[-158, -208], [-185, -207], [-186, -186], [-159, -187]], { color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Toilets</b><em>inside The Trainshed</em>")
@@ -317,8 +821,30 @@
     var railwayStation = L.polygon([[275, 23], [248, 107], [131, 70], [159, -15]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >railway station</b>Regular train services to Liverpool Lime Street, Widnes, Runcorn, Liverpool South Parkway, Warrington Bank Quay, Manchester Oxford Road, and Manchester Airport<em>Peter Tatchell Park</em>")
     var rlyInfo = L.circle([167, 16], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>inside Fiddlers Ferry railway station</em>")
     var rlyShops = L.polygon([[118, -19], [112, 16], [-106, -57], [-94, -91]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >shops</b>Selling a variety of goods<em>Peter Tatchell Park</em>")
-    var anneListerSquare = L.polygon([[-6, -220], [13, -187], [51, -168], [-18, -71], [-96, -100], [-82, -176], [-73, -175], [-40, -183]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >anne lister square</b>A large square situated at the base of the south cooling towers, named after the industrialist and \"first modern lesbian\" whose story inspitransparent the BBC drama Gentleman Jack")
+    var anneListerSquare = L.polygon([[-6, -220], [13, -187], [51, -168], [-18, -71], [-96, -100], [-82, -176], [-73, -175], [-40, -183]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >anne lister square</b>A large square situated at the base of the south cooling towers, named after the industrialist and \"first modern lesbian\" whose story inspired the BBC drama Gentleman Jack")
     var peterTatchellPark = L.polygon([[219, -416], [345, -292], [282, 5], [-4, -87], [109, -220], [118, -278], [154, -314], [148, -348], [210, -419]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b >Peter Tatchell Park</b>Located between the power station and the railway station, this large park pays tribute to queer activists from across the ages with a selection of sunken gardens alongside wide meadows.")
+    var postboxAL = L.polygon([[-121, -118], [-100, -118], [-98, -90], [-119, -90]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Postbox</b>Last collection times:<br>Mon-Fri 17:30<br>Sat 13:00<em>Anne Lister Square<em>")
+    var postboxTH = L.polygon([[215, -459], [193, -459], [193, -431], [215, -431]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Postbox</b>Last collection times:<br>Mon-Fri 18:30<br>Sat 13:30<em>Outside Turbine Hall, near main entrance<em>")
+    var premierInn = L.polygon([[267, -856], [233, -843], [237, -822], [238, -799], [231, -762], [218, -734], [200, -710], [230, -689], [245, -709], [258, -732], [268, -757], [273, -777], [275, -802], [273, -827]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Premier Inn</b>Our on-site hotel, with 250 rooms at an affordable price.<em>Near the car park<em>")
+    var motorcyclePark = L.polygon([[303, -764], [278, -764], [278, -734], [303, -734]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Motorbike parking</b><em>Turn right on the way in from Widnes Rd<em>")
+    var cyclePark = L.polygon([[282, -722], [252, -722], [252, -693], [282, -693]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Bike parking</b><em>Turn right on the way in from Widnes Rd<em>")
+    var smokingArea = L.polygon([[218, -656], [196, -656], [196, -631], [218, -631]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Smoking area</b>Smoking and vaping are prohibited across the site, except for within this area.<em>Near the main entrance to the Turbine Hall<em>")
+    var busStops = L.polygon([[459, -832], [428, -832], [428, -707], [459, -707]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Bus stops</b>Regular bus services are operated to Warrington, Runcorn, and Widnes.<em>Widnes Rd, near the main gates<em>")
+    var fredericFranklinCourt = L.polygon([[-426, -308], [-471, -308], [-471, -168], [-426, -168]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Frederic Franklin Court</b>Flats overlooking the River Mersey, named after the ballet dancer from Liverpool who went on to break Hollywood and won an Olivier award.<em>Accessed via the Sankey Canal towpath<em>")
+    var sarahWatersWoods = L.polygon([[-302, -39], [-489, -17], [-485, 313], [-407, 365], [-262, 90]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Sarah Waters Woods</b>A newly-planted woodland, rewilding the postindustrial landscape, named in honour of the Welsh author.<em>Park<em>")
+    var theLawns = L.polygon([[-261, -7], [-257, 91], [-341, 253], [-356, 310], [-401, 371], [-148, 465], [41, 396], [50, 125], [-160, 130], [-164, 16]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>The Lawns</b>Wide open grassy spaces for relaxation and play.<em>Park<em>")
+    var parkInfo = L.circle([-81, 414], { radius: 12, color: 'transparent', keepInView: true }).addTo(map).bindPopup("<b >Information desk</b>Always happy to assist with any enquiries during your visit.<em>The Lawns</em>")
+    var cycleParkPark = L.polygon([[-95, 20], [-123, 20], [-123, 51], [-95, 51]], { color: 'transparent', keepInView: true, keepInView: true }).addTo(map).bindPopup("<b>Bike parking</b><em>At the foot of Lady Diana Bridge<em>")
+
+
+    function openPopup(marker) {
+
+        document.getElementById("map").scrollIntoView();
+        marker.fire('click');
+    }
+
+
+
 
 
     map.on('click', function (e) {
