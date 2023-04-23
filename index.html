@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiddlers Ferry interactive map</title>
     <style>
+        @import url("https://use.typekit.net/jsm3fai.css");
+
         :root {
             --186c: #ce132d;
             --1505c: #ed6c05;
@@ -63,6 +65,7 @@
             font-style: normal;
             font-display: swap;
         }
+
 
 
 
@@ -193,6 +196,7 @@
             font-style: normal;
             font-weight: bold;
             text-transform: lowercase;
+
         }
 
         nav ul li.active,
@@ -239,6 +243,19 @@
             overflow-x: auto;
             gap: 20px;
             -webkit-overflow-scrolling: touch;
+            padding-block-end: 20px;
+        }
+
+        div.rack::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        div.rack::-webkit-scrollbar-track {
+            background-color: #f5f5f5;
+        }
+
+        div.rack::-webkit-scrollbar-thumb {
+            background-color: var(--highlight);
         }
 
         article {
@@ -272,15 +289,27 @@
         span.icon {
             margin-inline-end: 5px;
         }
+
+        span.scotch {
+            font-family: "scotch-deck-compressed", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        span.figure {
+            font-family: "transducer-extended", sans-serif;
+            font-weight: 900;
+            font-style: normal;
+        }
     </style>
     <style>
         @font-face {
-            font-family: 'liza';
-            src: url('fonts/liza.eot?w8gysa');
-            src: url('fonts/liza.eot?w8gysa#iefix') format('embedded-opentype'),
-                url('fonts/liza.ttf?w8gysa') format('truetype'),
-                url('fonts/liza.woff?w8gysa') format('woff'),
-                url('fonts/liza.svg?w8gysa#liza') format('svg');
+            font-family: 'Liza';
+            src: url('fonts/Liza.eot?t1yy18');
+            src: url('fonts/Liza.eot?t1yy18#iefix') format('embedded-opentype'),
+                url('fonts/Liza.ttf?t1yy18') format('truetype'),
+                url('fonts/Liza.woff?t1yy18') format('woff'),
+                url('fonts/Liza.svg?t1yy18#Liza') format('svg');
             font-weight: normal;
             font-style: normal;
             font-display: block;
@@ -289,7 +318,7 @@
         [class^="icon-"],
         [class*=" icon-"] {
             /* use !important to prevent issues with browser extensions that change fonts */
-            font-family: 'liza' !important;
+            font-family: 'Liza' !important;
             speak: never;
             font-style: normal;
             font-weight: normal;
@@ -300,6 +329,34 @@
             /* Better Font Rendering =========== */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-conference-centre:before {
+            content: "\e95f";
+        }
+
+        .icon-exhibition-hall:before {
+            content: "\e960";
+        }
+
+        .icon-star:before {
+            content: "\e95e";
+        }
+
+        .icon-arrow-nw:before {
+            content: "\e903";
+        }
+
+        .icon-arrow-sw:before {
+            content: "\e904";
+        }
+
+        .icon-arrow-se:before {
+            content: "\e905";
+        }
+
+        .icon-arrow-ne:before {
+            content: "\e906";
         }
 
         .icon-aeroplane:before {
@@ -314,31 +371,15 @@
             content: "\e902";
         }
 
-        .icon-arrow-n:before {
-            content: "\e903";
-        }
-
-        .icon-arrow-ne:before {
-            content: "\e904";
-        }
-
-        .icon-arrow-nw:before {
-            content: "\e905";
-        }
-
         .icon-arrow-s:before {
-            content: "\e906";
-        }
-
-        .icon-arrow-se:before {
             content: "\e907";
         }
 
-        .icon-arrow-sw:before {
+        .icon-arrow-w:before {
             content: "\e908";
         }
 
-        .icon-arrow-w:before {
+        .icon-arrow-n:before {
             content: "\e909";
         }
 
@@ -704,7 +745,7 @@
     <main>
         <hr>
         <div id="info">
-            <marquee>Open today <span id="until"></span>
+            <marquee>Open today <span id="until" class="figure"></span>
             </marquee>
         </div>
         <hr>
@@ -712,7 +753,7 @@
         <h1>interactive map</h1>
         <div id="map"></div>
         <hr>
-        <h1>exhibitions</h1>
+        <h1><span class="icon-exhibition-hall"></span> exhibitions </h1>
 
         <div class="rack">
 
@@ -722,14 +763,15 @@
                     was persecuted by
                     the government for being gay.<em>Tower 1</em></p>
                 <button onclick="openPopup(heDreamedOfMachines)"><span class="icon icon-you-are-here"></span> Show on
-                    map</button>
+                    map <span class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="pioneers.png" alt="pioneers">
                 <p>Queer people pivotal in the history of science and medicine are often left out of the history books.
                     This gallery charts
                     the technological advances impossible without LGBTQ+ figures.<em>Tower 2</em></p>
-                <button onclick="openPopup(pioneers)"><span class="icon icon-you-are-here"></span>Show on map</button>
+                <button onclick="openPopup(pioneers)"><span class="icon icon-you-are-here"></span>Show on map <span
+                        class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="pits.png" alt="pits and perverts">
@@ -737,21 +779,22 @@
                     violence. What
                     followed was a strong solidarity that lasted for decades.<em>Tower 3</em></p>
                 <button onclick="openPopup(pitsAndPerverts)"><span class="icon icon-you-are-here"></span>Show on
-                    map</button>
+                    map <span class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="places.png" alt="places to be">
                 <p>Our towns, cities, and homes have been shaped by the contributions of queer people in architecture
                     and design, whom we
                     celebrate with this interactive experience.<em>Tower 4</em></p>
-                <button onclick="openPopup(placesToBe)"><span class="icon icon-you-are-here"></span>Show on map</button>
+                <button onclick="openPopup(placesToBe)"><span class="icon icon-you-are-here"></span>Show on map <span
+                        class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="rails.png" alt="queers on rails">
                 <p>The development of the railways was guided by LGBTQ+ people. Since then, the histories of queer
                     people and the railways have been inseparable.<em>Dawn Langley Simmons Square</em></p>
                 <button onclick="openPopup(queersOnRails)"><span class="icon icon-you-are-here"></span>Show on
-                    map</button>
+                    map <span class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="trainshed.png" alt="the trainshed">
@@ -759,7 +802,7 @@
                     artifacts from the power station and the country's railway history.<em>Dawn Langley Simmons
                         Square</em></p>
                 <button onclick="openPopup(theTrainshed)"><span class="icon icon-you-are-here"></span>Show on
-                    map</button>
+                    map <span class="icon-arrow-e"></span></button>
             </article>
             <article>
                 <img src="history.png" alt="fiddlers ferry history">
@@ -767,10 +810,77 @@
                     Now, after the
                     rebirth, we pay tribute to what the site meant to everyone.<em>Turbine hall, Floor 1</em></p>
                 <button onclick="openPopup(fiddlersFerryHistory)"><span class="icon icon-you-are-here"></span>Show on
+                    map <span class="icon-arrow-e"></span></button>
+            </article>
+        </div>
+        <hr>
+        <h1><span class="icon-cinema"></span> <span class="scotch">Cinema</span> what's on</h1>
+
+        <div class="rack">
+
+            <article>
+                <img src="beautiful-laundrette.png" alt="my beautiful laundrette">
+                <p>The 1985 British romantic drama set in London during the Thatcher years, starring Daniel Day-Lewis as
+                    a fascist punk who
+                    falls in love with a Pakistani laundrette owner played by Gordon Warnecke.<em>Screen 2</em><span
+                        class="figure">until 16-07-2024</span></p>
+                <button onclick="openPopup(cinema)"><span class="icon icon-you-are-here"></span> Show on
+                    map <span class="icon-arrow-e"></span></button>
+            </article>
+            <article>
+                <img src="lady-on-fire.png" alt="portrait of a lady on fire">
+                <p>The 2019 French historical lesbian drama starring Noémie Merlant and Adèle Haenel as an 18th century
+                    aristocrat and the
+                    painter commissioned to paint her portrait, written and directed by Céline Sciamma.<em>Screen
+                        5</em><span class="figure">until 24-06-2024</span>
+                </p>
+                <button onclick="openPopup(cinema)"><span class="icon icon-you-are-here"></span>Show on map <span
+                        class="icon-arrow-e"></span></button>
+            </article>
+            <article>
+                <img src="beautiful-thing.png" alt="beautiful thing">
+                <p>The 1996 story of young gay love, set to the songs of Mama Cass and written by Jonathan Harvey.
+                    Starring Linda Henry and
+                    Tameka Empson alongside Glen Berry and Scott Neal.<em>Screen 3</em><span class="figure">until
+                        31-05-2024</span></p>
+                <button onclick="openPopup(cinema)"><span class="icon icon-you-are-here"></span>Show on
+                    map <span class="icon-arrow-e"></span></button>
+            </article>
+        </div>
+        <hr>
+        <h1><span class="icon-theatre"></span> <span class="scotch">Theatre</span> what's on</h1>
+
+        <div class="rack">
+
+            <article>
+                <img src="deathtrap.png" alt="deathtrap">
+                <p>The 1978 comedy thriller play-within-a-play featuring a has-been author’s thirst for a new
+                    bestseller, written by Ira
+                    Levin, dealing with passion, love, and revenge in and out of the closet.<em>Tower 7</em><span
+                        class="figure">07-11-2024 &mdash;
+                        19-12-2024</span></p>
+                <button onclick="openPopup(theatre)"><span class="icon icon-you-are-here"></span> Show on
+                    map</button>
+            </article>
+            <article>
+                <img src="out.png" alt="out">
+                <p>The inspirational interview series with queer celebrities and public figures about their lives is
+                    coming to Fiddlers
+                    Ferry for a live recording of a new series, featuring special surprise guests and great
+                    comedy.<em>Tower 7</em><span class="figure">25-06-2024, 7pm</span></p>
+                <button onclick="openPopup(theatre)"><span class="icon icon-you-are-here"></span>Show on map</button>
+            </article>
+            <article>
+                <img src="chiaroscuro.png" alt="chiaroscuro">
+                <p>Soulful live music and spoken word collide in this bold reimagining of Jackie Kay’s 1986 masterpiece.
+                    A celebration of
+                    queer women of colour across generations directed by Lynette Linton.<em>Tower 7</em><span
+                        class="figure">19-08-2024 &mdash;
+                        27-08-2024</span></p>
+                <button onclick="openPopup(theatre)"><span class="icon icon-you-are-here"></span>Show on
                     map</button>
             </article>
         </div>
-
     </main>
 </body>
 <script> // Initialise map
@@ -895,11 +1005,11 @@
     var openingTimes;
     var date = new Date();
     let day = date.getDay();
-    console.log(day);
+    //console.log(day);
     if (day === 0) {
-        openingTimes = "1000 - 1800"
+        openingTimes = "1000 &mdash; 1800"
     } else {
-        openingTimes = "0800 - 2200"
+        openingTimes = "0800 &mdash; 2200"
     }
     document.getElementById("until").innerHTML = openingTimes;
 </script>
