@@ -885,7 +885,8 @@
 </body>
 <script> // Initialise map
     var map = L.map('map', {
-        crs: L.CRS.Simple
+        crs: L.CRS.Simple,
+        attributionControl: false
     })
     var bounds = [[-490, -1000], [490, 1000]];
     var image = L.imageOverlay('map.svg', bounds).addTo(map);
