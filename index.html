@@ -92,7 +92,7 @@
         }
 
         #map {
-            height: 100%;
+            height: 75%;
             width: 100%;
         }
 
@@ -300,6 +300,30 @@
             font-family: "transducer-extended", sans-serif;
             font-weight: 900;
             font-style: normal;
+        }
+
+        div.key {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            column-gap: 20px;
+            row-gap: 10px;
+            margin-block: 10px;
+            justify-content: space-between;
+        }
+
+        div.key p {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            font-weight: bold;
+            flex-wrap: nowrap;
+            margin: 5px;
+            font-size: 1.2rem;
+        }
+
+        div.key p span {
+            color: var(--226c);
         }
     </style>
     <style>
@@ -729,7 +753,7 @@
 
 <body>
     <header>
-        <img src="logo.svg" alt="Fiddlers Ferry" height="100px">
+        <img src="logo.svg" alt="Fiddlers Ferry" height="100px" id="logo">
         <nav>
             <ul>
                 <li>Home</li>
@@ -752,6 +776,43 @@
 
         <h1>interactive map</h1>
         <div id="map"></div>
+        <div class="key">
+            <p><span class="icon-steps"></span>Stairs</p>
+            <p><span class="icon-ramp"></span>Ramp</p>
+            <p><span class="icon-escalator"></span>Escalator</p>
+            <p><span class="icon-lift"></span>Lift</p>
+            <p><span class="icon-bus-stop"></span>Bus stop</p>
+            <p><span class="icon-coach-stand"></span>Coach park</p>
+            <p><span class="icon-taxi-rank"></span>Taxi rank</p>
+            <p><span><img src="british rail.svg" alt=""></span>Railway station</p>
+            <p><span class="icon-telephone"></span>Telephones</p>
+            <p><span class="icon-ferryboat-pier"></span>Ferryboat pier</p>
+            <p><span class="icon-restaurant"></span>Restaurant</p>
+            <p><span class="icon-shower"></span>Showers</p>
+            <p><span class="icon-parking"></span>Car park</p>
+            <p><span class="icon-parking-disabled"></span>Disabled parking</p>
+            <p><span class="icon-cycle-parking"></span>Cycle parking</p>
+            <p><span class="icon-motorcycle-parking"></span>Motorcycle parking</p>
+            <p><span class="icon-electric-car-charging"></span>EV charging</p>
+            <p><span class="icon-smoking"></span>Smoking area</p>
+            <p><span class="icon-first-aid"></span>First aid</p>
+            <p><span class="icon-cash-machine"></span>Cash machine</p>
+            <p><span class="icon-shop"></span>Shop</p>
+            <p><span class="icon-information"></span>Information</p>
+            <p><span class="icon-cafe"></span>Café</p>
+            <p><span class="icon-hotel"></span>Hotel</p>
+            <p><span class="icon-toilet"></span>Toilets</p>
+            <p><span class="icon-ladies-and-gentlemen"></span>Gents and ladies</p>
+            <p><span class="icon-wheelchair"></span>Disabled toilet</p>
+            <p><span class="icon-baby-change"></span>Baby changing</p>
+            <p><span class="icon-cloakroom"></span>Cloakroom</p>
+            <p><span class="icon-box-office"></span>Box office</p>
+            <p><span class="icon-locker"></span>Bar</p>
+            <p><span class="icon-lost-property"></span>Lost property</p>
+            <p><span class="icon-postbox"></span>Postbox</p>
+            <p><span class="icon-prayer-room"></span>Prayer room</p>
+
+        </div>
         <hr>
         <h1><span class="icon-exhibition-hall"></span> exhibitions </h1>
 
